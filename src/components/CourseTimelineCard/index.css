@@ -1,0 +1,16 @@
+.course-card-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid #ffffff;
+}
+
+.top-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-title {
+  color: black;
+}
