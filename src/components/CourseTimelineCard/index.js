@@ -1,24 +1,39 @@
-import './index.css'
+import {AiFillClockCircle} from 'react-icons/ai'
 
-const CourseTimeLineCard = props => {
+import {
+  CourseTitleAndDurationContainer,
+  CourseTitle,
+  DurationContainer,
+  Duration,
+  CourseDescription,
+  CourseTagsContainer,
+  CourseTagItem,
+  CourseTag,
+} from './styledComponents'
+
+const CourseTimelineCard = props => {
   const {courseDetails} = props
-  console.log(courseDetails)
-  const {courseTitle, duration, description, tagList} = courseDetails
+  const {courseTitle, description, duration, tagsList} = courseDetails
 
   return (
-    <div>
-      <div className="course-card-container">
-        <div className="top-section">
-          <h1 className="card-title">{courseTitle}</h1>
-          <p className="duration">{duration}</p>
-        </div>
-        <p className="description">{description}</p>
-        {tagList.map(each => (
-          <label key={each.id}>{each.name}</label>
+    <>
+      <CourseTitleAndDurationContainer>
+        <CourseTitle>{courseTitle}</CourseTitle>
+        <DurationContainer>
+          <AiFillClockCircle color="#171f46" />
+          <Duration>{duration}</Duration>
+        </DurationContainer>
+      </CourseTitleAndDurationContainer>
+      <CourseDescription>{description}</CourseDescription>
+      <CourseTagsContainer>
+        {tagsList.map(eachTag => (
+          <CourseTagItem key={eachTag.id}>
+            <CourseTag>{eachTag.name}</CourseTag>
+          </CourseTagItem>
         ))}
-      </div>
-    </div>
+      </CourseTagsContainer>
+    </>
   )
 }
 
-export default CourseTimeLineCard
+export default CourseTimelineCard

@@ -1,40 +1,47 @@
 import {Chrono} from 'react-chrono'
 
-import CourseTimeLineCard from '../CourseTimelineCard'
-import ProjectTimeLineCard from '../ProjectTimelineCard'
+import ProjectTimelineCard from '../ProjectTimelineCard'
+import CourseTimelineCard from '../CourseTimelineCard'
 
-import './index.css'
+import {
+  TimelineContainer,
+  ResponsiveContainer,
+  HeaderContainer,
+  Heading,
+  CCBPHeading,
+} from './styledComponents'
 
-const TimeLineView = props => {
+const TimelineView = props => {
   const {timelineItemsList} = props
 
-  const renderTimeLineCard = eachItem => {
-    if (eachItem.categoryId === 'COURSE') {
-      // console.log(eachItem)
-
-      return <CourseTimeLineCard key={eachItem.id} courseDetails={eachItem} />
+  const renderTimelineCard = item => {
+    if (item.categoryId === 'PROJECT') {
+      return <ProjectTimelineCard key={item.id} projectDetails={item} />
     }
-    // console.log(eachItem)
-    return <ProjectTimeLineCard key={eachItem.id} projectDetails={eachItem} />
+    return <CourseTimelineCard key={item.id} courseDetails={item} />
   }
 
   return (
-    <div className="app-container">
-      <h1 className="app-heading">MY JOURNEY OF</h1>
-      <h1 className="app-subtitle">CCBP 4.0</h1>
-      <div className="chron-container">
+    <TimelineContainer>
+      <ResponsiveContainer>
+        <HeaderContainer>
+          <Heading>
+            MY JOURNEY OF <br />
+            <CCBPHeading>CCBP 4.0</CCBPHeading>
+          </Heading>
+        </HeaderContainer>
         <Chrono
-          mode="VERTICAL_ALTERNATING"
           theme={{
             secondary: 'white',
           }}
           items={timelineItemsList}
+          mode="VERTICAL_ALTERNATING"
         >
-          {timelineItemsList.map(each => renderTimeLineCard(each))}
+          {timelineItemsList.map(eachItem => renderTimelineCard(eachItem))}
         </Chrono>
-      </div>
-    </div>
+      </ResponsiveContainer>
+    </TimelineContainer>
   )
 }
 
-export default TimeLineView
+export default TimelineView
